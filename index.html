@@ -46,9 +46,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ══════════════════════════════════
-   NOISE OVERLAY
-══════════════════════════════════ */
+/* NOISE OVERLAY */
 body::before {
   content: '';
   position: fixed;
@@ -59,9 +57,7 @@ body::before {
   opacity: 0.4;
 }
 
-/* ══════════════════════════════════
-   TICKER BAR
-══════════════════════════════════ */
+/* TICKER BAR */
 .ticker-bar {
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
@@ -119,9 +115,7 @@ body::before {
   100% { transform: translateX(-50%); }
 }
 
-/* ══════════════════════════════════
-   TOP NAVIGATION
-══════════════════════════════════ */
+/* TOP NAVIGATION */
 .topnav {
   background: rgba(8, 12, 16, 0.96);
   backdrop-filter: blur(12px);
@@ -237,9 +231,7 @@ body::before {
   color: #000;
 }
 
-/* ══════════════════════════════════
-   HERO
-══════════════════════════════════ */
+/* HERO */
 .hero {
   position: relative;
   min-height: 88vh;
@@ -461,9 +453,7 @@ body::before {
   letter-spacing: 1px;
 }
 
-/* ══════════════════════════════════
-   SECTION BASICS
-══════════════════════════════════ */
+/* SECTION BASICS */
 .section {
   padding: 80px 40px;
   position: relative;
@@ -517,9 +507,7 @@ body::before {
   margin: 0 40px;
 }
 
-/* ══════════════════════════════════
-   ABOUT SECTION
-══════════════════════════════════ */
+/* ABOUT SECTION */
 .about-section {
   background: var(--bg2);
 }
@@ -651,9 +639,7 @@ body::before {
   margin-top: 4px;
 }
 
-/* ══════════════════════════════════
-   PRODUCTS SECTION
-══════════════════════════════════ */
+/* PRODUCTS SECTION */
 .products-section {
   background: var(--bg);
 }
@@ -761,9 +747,7 @@ body::before {
   font-size: 9px;
 }
 
-/* ══════════════════════════════════
-   ANALYTICS / STATS SECTION
-══════════════════════════════════ */
+/* ANALYTICS / STATS SECTION */
 .analytics-section {
   background: var(--bg2);
   border-top: 1px solid var(--border);
@@ -784,7 +768,6 @@ body::before {
   margin-bottom: 24px;
 }
 
-/* PLACEHOLDER CHART AREA */
 .chart-placeholder {
   background: var(--card);
   border: 1px solid var(--border);
@@ -953,9 +936,7 @@ body::before {
   margin-bottom: 6px;
 }
 
-/* ══════════════════════════════════
-   PHOTO GALLERY
-══════════════════════════════════ */
+/* PHOTO GALLERY */
 .gallery-section {
   background: var(--bg);
 }
@@ -982,7 +963,6 @@ body::before {
   grid-row: span 2;
 }
 
-/* NEW: Gallery images from web */
 .gallery-item img {
   position: absolute;
   inset: 0;
@@ -1032,9 +1012,7 @@ body::before {
   z-index: 2;
 }
 
-/* ══════════════════════════════════
-   WHY US / CTA SECTION
-══════════════════════════════════ */
+/* WHY US / CTA SECTION */
 .why-section {
   background: var(--bg2);
 }
@@ -1177,9 +1155,7 @@ body::before {
   text-transform: uppercase;
 }
 
-/* ══════════════════════════════════
-   CONTACT / CHANNELS
-══════════════════════════════════ */
+/* CONTACT / CHANNELS */
 .contact-section {
   background: var(--bg);
 }
@@ -1234,9 +1210,7 @@ body::before {
   letter-spacing: 1px;
 }
 
-/* ══════════════════════════════════
-   FOOTER
-══════════════════════════════════ */
+/* FOOTER */
 footer {
   background: var(--bg2);
   border-top: 1px solid var(--border);
@@ -1310,9 +1284,7 @@ footer {
   opacity: 0.5;
 }
 
-/* ══════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════ */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .hero-content        { grid-template-columns: 1fr; }
   .hero-card           { display: none; }
@@ -1340,9 +1312,7 @@ footer {
   .footer-bottom       { flex-direction: column; gap: 12px; text-align: center; }
 }
 
-/* ══════════════════════════════════
-   ANIMATIONS
-══════════════════════════════════ */
+/* ANIMATIONS */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -1359,14 +1329,11 @@ footer {
 .fade-in-delay-3 { transition-delay: 0.3s; }
 .fade-in-delay-4 { transition-delay: 0.4s; }
 </style>
-<base target="_blank">
 </head>
 
 <body>
 
-<!-- ═══════════════════════════════
-     TICKER BAR
-═══════════════════════════════ -->
+<!-- TICKER BAR -->
 <div class="ticker-bar">
   <div class="ticker-label">LIVE MARKETS</div>
   <div class="ticker-track" id="tickerTrack">
@@ -1394,9 +1361,7 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════
-     NAVIGATION
-═══════════════════════════════ -->
+<!-- NAVIGATION -->
 <nav class="topnav">
   <a href="#" class="logo">
     <div class="logo-icon">E9</div>
@@ -1418,9 +1383,7 @@ footer {
   </div>
 </nav>
 
-<!-- ═══════════════════════════════
-     HERO
-═══════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -1501,9 +1464,7 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════
-     ABOUT
-═══════════════════════════════ -->
+<!-- ABOUT -->
 <section class="section about-section" id="about">
   <div class="section-inner">
     <div class="about-grid">
@@ -1585,9 +1546,7 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════
-     PRODUCTS
-═══════════════════════════════ -->
+<!-- PRODUCTS -->
 <section class="section products-section" id="products">
   <div class="section-inner">
     <div class="section-label">What We Trade</div>
@@ -1812,9 +1771,7 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════
-     MARKET ANALYTICS
-═══════════════════════════════ -->
+<!-- MARKET ANALYTICS -->
 <section class="section analytics-section" id="markets">
   <div class="section-inner">
     <div class="section-label">Market Intelligence</div>
@@ -1826,9 +1783,7 @@ footer {
         <h3>Global Crude Oil & Fuel Price Dynamics — 2025</h3>
         <div class="chart-placeholder">
           <div class="chart-title">Brent Crude · Monthly Average (USD/bbl)</div>
-          <div class="chart-bars" id="chartBars">
-            <!-- Generated by JS -->
-          </div>
+          <div class="chart-bars" id="chartBars"></div>
           <div class="chart-x-labels" id="chartLabels"></div>
         </div>
         <div class="chart-note">* Indicative data for reference purposes. Source: ICE, NYMEX, Platts assessments.</div>
@@ -1908,9 +1863,7 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════
-     GALLERY
-═══════════════════════════════ -->
+<!-- GALLERY -->
 <section class="section gallery-section" id="gallery">
   <div class="section-inner">
     <div class="section-label">Operations & Assets</div>
@@ -1963,9 +1916,7 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════
-     WHY US
-═══════════════════════════════ -->
+<!-- WHY US -->
 <section class="section why-section" id="why">
   <div class="section-inner">
     <div class="section-label">Why Work With Us</div>
@@ -2024,9 +1975,7 @@ footer {
 
 <div class="divider"></div>
 
-<!-- ═══════════════════════════════
-     CONTACT / CHANNELS
-═══════════════════════════════ -->
+<!-- CONTACT / CHANNELS -->
 <section class="section contact-section" id="contact">
   <div class="section-inner">
     <div class="section-label">Get In Touch</div>
@@ -2061,9 +2010,7 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════════════════════════
-     FOOTER
-═══════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -2119,20 +2066,22 @@ footer {
 <script>
 // ═══════════════════════════════════════════════════════════════
 //  EN590 COMMODITIES GROUP — LIVE PRICE ENGINE & GALLERY
+//  Исправления: CORS-прокси, рендеринг процентов, stat-cards $,
+//  fallback-логика для первого запуска, галерея из сети.
 // ═══════════════════════════════════════════════════════════════
 
-const PRICE_CACHE_KEY = 'en590_price_cache_v1';
+const PRICE_CACHE_KEY = 'en590_price_cache_v2';
 const UPDATE_INTERVAL_MS = 6 * 60 * 60 * 1000; // 6 часов
 
 // Yahoo Finance символы
 const YAHOO_SYMBOLS = {
   brent: 'BZ=F',   // Brent Crude
   wti: 'CL=F',     // WTI Crude
-  natgas: 'NG=F'   // Natural Gas (Henry Hub — прокси для TTF)
+  natgas: 'NG=F'   // Natural Gas (Henry Hub — используем как прокси)
 };
 
-// Fallback цены, если API полностью недоступен
-const FALLBACK_PRICES = {
+// Fallback база (если Yahoo полностью недоступен)
+const FALLBACK = {
   brent: 82.14,
   wti: 78.90,
   natgas: 10.42
@@ -2140,46 +2089,54 @@ const FALLBACK_PRICES = {
 
 // ═══════════════════════════════════════════════════════════════
 // НАСТРОЙКА ФОРМУЛ РАСЧЕТА (от цены Brent)
-// Здесь ты можешь менять множители под свой рынок.
-// Примеры формул заказчика:
-//   EN590   = Brent * 7 * 1.2          = Brent * 8.4
-//   Sulphur = Brent * 7 * 0.08 * 10    = Brent * 5.6
-// Ниже приведены рыночные коэффициенты, дающие реалистичные цены.
+// Меняйте множители ниже под свои требования рынка.
 // ═══════════════════════════════════════════════════════════════
 const PRICE_CONFIG = [
-  { id: 'brent',    name: 'BRENT CRUDE',    source: 'yahoo', symbol: 'BZ=F',   unit: '/bbl',   decimals: 2, formula: null },
-  { id: 'wti',      name: 'WTI CRUDE',      source: 'yahoo', symbol: 'CL=F',   unit: '/bbl',   decimals: 2, formula: null },
+  { id: 'brent',    name: 'BRENT CRUDE',    source: 'yahoo', symbol: 'BZ=F',   unit: '',       decimals: 2, formula: null },
+  { id: 'wti',      name: 'WTI CRUDE',      source: 'yahoo', symbol: 'CL=F',   unit: '',       decimals: 2, formula: null },
   { id: 'en590',    name: 'EN590 10PPM',    source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 8.4 },
-  { id: 'sulphur',  name: 'SULPHUR GRAN',   source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 1.36 },
+  { id: 'sulphur',  name: 'SULPHUR GRAN',   source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 1.36 }, // рыночный коэф. ~1.36x Brent
   { id: 'urea',     name: 'UREA 46% GRAN',  source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 3.63 },
   { id: 'npk',      name: 'NPK 16-16-16',   source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 4.14 },
   { id: 'jet',      name: 'JET FUEL A1',    source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 9.98 },
   { id: 'mazut',    name: 'MAZUT M100',     source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 3.77 },
-  { id: 'bitumen',  name: 'BITUMEN 60/70',  source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 5.11 },
   { id: 'natgas',   name: 'NAT GAS TTF',    source: 'yahoo', symbol: 'NG=F',   unit: '/MMBtu', decimals: 2, formula: null },
+  { id: 'bitumen',  name: 'BITUMEN 60/70',  source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 5.11 },
 ];
 
 // ═══════════════════════════════════════════════════════════════
-// YAHOO FINANCE API (с CORS-прокси fallback)
+// YAHOO FINANCE API (4 прокси + fallback)
 // ═══════════════════════════════════════════════════════════════
 async function fetchYahooPrice(symbol) {
-  const direct = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`;
-  const proxy = `https://corsproxy.io/?${encodeURIComponent(direct)}`;
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`;
+  const proxies = [
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+    `https://thingproxy.freeboard.io/fetch/${url}`
+  ];
 
-  for (const url of [direct, proxy]) {
+  for (const proxyUrl of proxies) {
     try {
-      const res = await fetch(url, { cache: 'no-store' });
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 8000);
+      const res = await fetch(proxyUrl, { cache: 'no-store', signal: ctrl.signal });
+      clearTimeout(t);
       if (!res.ok) continue;
       const data = await res.json();
-      if (data.chart && data.chart.result && data.chart.result[0]) {
+      if (data.chart?.result?.[0]) {
         const meta = data.chart.result[0].meta;
-        const price = meta.regularMarketPrice || meta.previousClose || meta.chartPreviousClose;
-        return parseFloat(price);
+        const price = meta.regularMarketPrice ?? meta.previousClose ?? meta.chartPreviousClose;
+        if (price != null) {
+          console.log(`[EN590] ${symbol} = ${price} via ${proxyUrl.split('/')[2]}`);
+          return parseFloat(price);
+        }
       }
     } catch (e) {
-      // silent fail, try next
+      // пробуем следующий прокси
     }
   }
+  console.warn(`[EN590] All proxies failed for ${symbol}, using fallback`);
   return null;
 }
 
@@ -2204,15 +2161,33 @@ function setCache(prices, prevPrices) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// ВЫЧИСЛИТЬ ВСЕ ЦЕНЫ ИЗ FALLBACK (для первого старта)
+// ═══════════════════════════════════════════════════════════════
+function computeFallbackPrices() {
+  const b = FALLBACK.brent, w = FALLBACK.wti, n = FALLBACK.natgas;
+  const p = {};
+  for (const cfg of PRICE_CONFIG) {
+    if (cfg.source === 'yahoo') {
+      p[cfg.id] = FALLBACK[cfg.id] || 0;
+    } else {
+      p[cfg.id] = cfg.formula(b, w, n);
+    }
+  }
+  return p;
+}
+
+// ═══════════════════════════════════════════════════════════════
 // FORMATTING HELPERS
 // ═══════════════════════════════════════════════════════════════
 function fmt(val, decimals) {
+  if (val == null || isNaN(val)) return '—';
   return decimals === 0 ? Math.round(val).toString() : val.toFixed(decimals);
 }
 
 function fmtChange(cur, prev) {
-  if (!prev || prev === 0 || cur === prev) return { cls: 'up', txt: '▲ 0.00%' };
+  if (prev == null || prev === 0 || isNaN(prev) || isNaN(cur)) return { cls: 'up', txt: '▲ 0.00%' };
   const pct = ((cur - prev) / prev) * 100;
+  if (Math.abs(pct) < 0.001) return { cls: 'up', txt: '▲ 0.00%' };
   const cls = pct >= 0 ? 'up' : 'dn';
   const arrow = pct >= 0 ? '▲' : '▼';
   const sign = pct >= 0 ? '+' : '';
@@ -2235,44 +2210,46 @@ async function updatePrices(force = false) {
 
   // Если кэш свежий (< 6 часов) и не force — рендерим из кэша
   if (!force && cache && (now - cache.timestamp < UPDATE_INTERVAL_MS)) {
-    renderAll(cache.prices, cache.prevPrices, cache.timestamp);
+    renderAll(cache.prices, cache.prevPrices, cache.timestamp, false);
     return;
   }
 
   // Fetch Yahoo данные
   const yahoo = {};
+  let liveCount = 0;
   for (const [key, sym] of Object.entries(YAHOO_SYMBOLS)) {
-    yahoo[key] = await fetchYahooPrice(sym);
+    const price = await fetchYahooPrice(sym);
+    if (price != null) liveCount++;
+    yahoo[key] = price;
   }
 
-  const brent = yahoo.brent || FALLBACK_PRICES.brent;
-  const wti   = yahoo.wti   || FALLBACK_PRICES.wti;
-  const natgas= yahoo.natgas|| FALLBACK_PRICES.natgas;
+  const brent = yahoo.brent || FALLBACK.brent;
+  const wti   = yahoo.wti   || FALLBACK.wti;
+  const natgas= yahoo.natgas|| FALLBACK.natgas;
 
   const prices = {};
-  const prev = cache ? cache.prices : {};
-
   for (const cfg of PRICE_CONFIG) {
     if (cfg.source === 'yahoo') {
-      const yid = cfg.id; // brent, wti, natgas
-      prices[cfg.id] = yahoo[yid] || FALLBACK_PRICES[yid] || 0;
+      prices[cfg.id] = yahoo[cfg.id] || FALLBACK[cfg.id] || 0;
     } else {
       prices[cfg.id] = cfg.formula(brent, wti, natgas);
     }
   }
 
+  // Предыдущие цены: из кэша или вычисленные из fallback (чтобы при первом запуске были %)
+  const prev = cache ? cache.prices : computeFallbackPrices();
   setCache(prices, prev);
-  renderAll(prices, prev, now);
+  renderAll(prices, prev, now, liveCount > 0);
 }
 
 // ═══════════════════════════════════════════════════════════════
 // RENDER ALL UI
 // ═══════════════════════════════════════════════════════════════
-function renderAll(prices, prevPrices, timestamp) {
+function renderAll(prices, prevPrices, timestamp, isLive) {
   renderTicker(prices, prevPrices);
   renderHeroCard(prices, prevPrices);
   renderStatCards(prices);
-  renderFooterTime(timestamp);
+  renderFooterTime(timestamp, isLive);
 }
 
 function renderTicker(prices, prevPrices) {
@@ -2281,7 +2258,7 @@ function renderTicker(prices, prevPrices) {
 
   PRICE_CONFIG.forEach((cfg, i) => {
     const val = prices[cfg.id];
-    const prev = prevPrices[cfg.id] || val;
+    const prev = prevPrices[cfg.id];
     const ch = fmtChange(val, prev);
     const display = '$' + fmt(val, cfg.decimals) + cfg.unit;
 
@@ -2316,7 +2293,7 @@ function renderHeroCard(prices, prevPrices) {
     if (!cfg) return;
 
     const val = prices[m.id];
-    const prev = prevPrices[m.id] || val;
+    const prev = prevPrices[m.id];
     const ch = fmtChange(val, prev);
 
     const nameEl = row.querySelector('.price-name');
@@ -2339,26 +2316,27 @@ function renderStatCards(prices) {
     const cfg = PRICE_CONFIG.find(c => c.id === id);
     if (!cfg) return;
     const val = prices[id];
-    if (val == null) return;
+    if (val == null || isNaN(val)) return;
     const sVal = card.querySelector('.s-val');
-    if (sVal) sVal.textContent = fmt(val, cfg.decimals);
+    if (sVal) sVal.textContent = '$' + fmt(val, cfg.decimals);
   });
 }
 
-function renderFooterTime(timestamp) {
+function renderFooterTime(timestamp, isLive) {
   const el = document.getElementById('priceFooter');
   if (!el || !timestamp) return;
   const d = new Date(timestamp);
   const timeStr = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
   const dateStr = d.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
-  el.innerHTML = `⚡ Auto-updated <strong>${dateStr} ${timeStr}</strong> · Next update in 6h · Click to refresh · Contact for firm offers`;
+  const status = isLive ? 'Live' : 'Cached';
+  el.innerHTML = `⚡ ${status} · Updated <strong>${dateStr} ${timeStr}</strong> · Click to refresh · Contact for firm offers`;
   el.style.cursor = 'pointer';
   el.title = 'Click to force refresh prices now';
   el.onclick = () => updatePrices(true);
 }
 
 // ═══════════════════════════════════════════════════════════════
-// GALLERY ENGINE (images from web)
+// GALLERY ENGINE (images from web via loremflickr)
 // ═══════════════════════════════════════════════════════════════
 const GALLERY_KEYWORDS = [
   'oil,terminal,port',
@@ -2402,7 +2380,8 @@ function initGallery() {
 function showTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
+  const tab = document.getElementById('tab-' + name);
+  if (tab) tab.classList.add('active');
   if (event && event.target) event.target.classList.add('active');
 }
 
@@ -2414,8 +2393,6 @@ const prices = [74, 79, 83, 80, 85, 88, 82, 86, 89, 84, 87, 82];
 const maxP = Math.max(...prices);
 
 const barsEl = document.getElementById('chartBars');
-const labelsEl = document.getElementById('chartLabels');
-
 if (barsEl) {
   months.forEach((m, i) => {
     const h = (prices[i] / maxP * 100);
@@ -2451,7 +2428,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePrices();
   initGallery();
 
-  // Периодическая проверка каждые 10 минут (если страница открыта долго)
+  // Периодическая проверка каждые 10 минут
   setInterval(() => updatePrices(), 10 * 60 * 1000);
 });
 </script>
