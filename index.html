@@ -2065,317 +2065,238 @@ footer {
 
 <script>
 // ═══════════════════════════════════════════════════════════════
-//  EN590 COMMODITIES GROUP — LIVE PRICE ENGINE & GALLERY
-//  Исправления: CORS-прокси, рендеринг процентов, stat-cards $,
-//  fallback-логика для первого запуска, галерея из сети.
+//  EN590 PRICE ENGINE v3 — Swiss Clock Edition
+//  • Поиск по имени/атрибуту, не по индексу
+//  • Fallback-цены = шаблону HTML
+//  • Формулы привязаны к шаблону (при Brent=82.14 дают точные цифры)
+//  • Проценты считаются от предыдущих цен (кэш или fallback)
 // ═══════════════════════════════════════════════════════════════
+const PRICE_ENGINE = {
+  cacheKey: 'en590_price_cache_v3',
+  interval: 6 * 60 * 60 * 1000,
 
-const PRICE_CACHE_KEY = 'en590_price_cache_v2';
-const UPDATE_INTERVAL_MS = 6 * 60 * 60 * 1000; // 6 часов
+  fallback: {
+    brent: 82.14,
+    wti: 78.90,
+    natgas: 10.42
+  },
 
-// Yahoo Finance символы
-const YAHOO_SYMBOLS = {
-  brent: 'BZ=F',   // Brent Crude
-  wti: 'CL=F',     // WTI Crude
-  natgas: 'NG=F'   // Natural Gas (Henry Hub — используем как прокси)
-};
+  // calc(brent) — коэффициенты выведены из шаблона:
+  // EN590 $746 / 82.14 = 9.08 | Sulphur $112 / 82.14 = 1.36 и т.д.
+  items: [
+    { id: 'brent',    name: 'BRENT CRUDE',    yahoo: 'BZ=F',   unit: '/bbl',   decimals: 2, calc: null },
+    { id: 'wti',      name: 'WTI CRUDE',      yahoo: 'CL=F',   unit: '/bbl',   decimals: 2, calc: null },
+    { id: 'en590',    name: 'EN590 10PPM',    yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 9.08 },
+    { id: 'sulphur',  name: 'SULPHUR GRAN',   yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 1.36 },
+    { id: 'urea',     name: 'UREA 46% GRAN',  yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 3.63 },
+    { id: 'npk',      name: 'NPK 16-16-16',   yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 4.14 },
+    { id: 'jet',      name: 'JET FUEL A1',    yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 9.98 },
+    { id: 'mazut',    name: 'MAZUT M100',     yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 3.77 },
+    { id: 'natgas',   name: 'NAT GAS TTF',    yahoo: 'NG=F',   unit: '/MMBtu', decimals: 2, calc: null },
+    { id: 'bitumen',  name: 'BITUMEN 60/70',  yahoo: null,     unit: '/MT',    decimals: 0, calc: b => b * 5.11 },
+  ],
 
-// Fallback база (если Yahoo полностью недоступен)
-const FALLBACK = {
-  brent: 82.14,
-  wti: 78.90,
-  natgas: 10.42
-};
+  proxies: [
+    u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+    u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+    u => `https://thingproxy.freeboard.io/fetch/${u}`
+  ],
 
-// ═══════════════════════════════════════════════════════════════
-// НАСТРОЙКА ФОРМУЛ РАСЧЕТА (от цены Brent)
-// Меняйте множители ниже под свои требования рынка.
-// ═══════════════════════════════════════════════════════════════
-const PRICE_CONFIG = [
-  { id: 'brent',    name: 'BRENT CRUDE',    source: 'yahoo', symbol: 'BZ=F',   unit: '',       decimals: 2, formula: null },
-  { id: 'wti',      name: 'WTI CRUDE',      source: 'yahoo', symbol: 'CL=F',   unit: '',       decimals: 2, formula: null },
-  { id: 'en590',    name: 'EN590 10PPM',    source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 8.4 },
-  { id: 'sulphur',  name: 'SULPHUR GRAN',   source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 3.36 }, // рыночный коэф. ~1.36x Brent
-  { id: 'urea',     name: 'UREA 46% GRAN',  source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 3.63 },
-  { id: 'npk',      name: 'NPK 16-16-16',   source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 4.14 },
-  { id: 'jet',      name: 'JET FUEL A1',    source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 9.98 },
-  { id: 'mazut',    name: 'MAZUT M100',     source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 3.77 },
-  { id: 'natgas',   name: 'NAT GAS TTF',    source: 'yahoo', symbol: 'NG=F',   unit: '/MMBtu', decimals: 2, formula: null },
-  { id: 'bitumen',  name: 'BITUMEN 60/70',  source: 'calc',                   unit: '/MT',    decimals: 0, formula: (b,w,n) => b * 5.11 },
-];
-
-// ═══════════════════════════════════════════════════════════════
-// YAHOO FINANCE API (4 прокси + fallback)
-// ═══════════════════════════════════════════════════════════════
-async function fetchYahooPrice(symbol) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`;
-  const proxies = [
-    `https://corsproxy.io/?${encodeURIComponent(url)}`,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
-    `https://thingproxy.freeboard.io/fetch/${url}`
-  ];
-
-  for (const proxyUrl of proxies) {
-    try {
-      const ctrl = new AbortController();
-      const t = setTimeout(() => ctrl.abort(), 8000);
-      const res = await fetch(proxyUrl, { cache: 'no-store', signal: ctrl.signal });
-      clearTimeout(t);
-      if (!res.ok) continue;
-      const data = await res.json();
-      if (data.chart?.result?.[0]) {
-        const meta = data.chart.result[0].meta;
-        const price = meta.regularMarketPrice ?? meta.previousClose ?? meta.chartPreviousClose;
-        if (price != null) {
-          console.log(`[EN590] ${symbol} = ${price} via ${proxyUrl.split('/')[2]}`);
-          return parseFloat(price);
+  async fetchYahoo(symbol) {
+    const base = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=1d`;
+    for (const mk of this.proxies) {
+      try {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 8000);
+        const r = await fetch(mk(base), { cache: 'no-store', signal: ctrl.signal });
+        clearTimeout(t);
+        if (!r.ok) continue;
+        const d = await r.json();
+        const res = d?.chart?.result?.[0];
+        if (res) {
+          const m = res.meta;
+          const p = m.regularMarketPrice ?? m.previousClose ?? m.chartPreviousClose;
+          if (p != null) return parseFloat(p);
         }
+      } catch (e) {}
+    }
+    return null;
+  },
+
+  getCache() {
+    try {
+      const raw = localStorage.getItem(this.cacheKey);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  },
+
+  setCache(prices, prevPrices) {
+    localStorage.setItem(this.cacheKey, JSON.stringify({
+      timestamp: Date.now(),
+      prices,
+      prevPrices
+    }));
+  },
+
+  computePrices(yahooData) {
+    const b = yahooData.brent ?? this.fallback.brent;
+    const out = {};
+    for (const it of this.items) {
+      if (it.yahoo) {
+        out[it.id] = yahooData[it.id] ?? this.fallback[it.id] ?? 0;
+      } else if (it.calc) {
+        out[it.id] = it.calc(b);
       }
-    } catch (e) {
-      // пробуем следующий прокси
     }
-  }
-  console.warn(`[EN590] All proxies failed for ${symbol}, using fallback`);
-  return null;
-}
+    return out;
+  },
 
-// ═══════════════════════════════════════════════════════════════
-// LOCAL STORAGE CACHE
-// ═══════════════════════════════════════════════════════════════
-function getCache() {
-  try {
-    const raw = localStorage.getItem(PRICE_CACHE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch (e) {}
-  return null;
-}
+  fmt(val, d) {
+    if (val == null || isNaN(val)) return '—';
+    return d === 0 ? Math.round(val).toString() : val.toFixed(d);
+  },
 
-function setCache(prices, prevPrices) {
-  const payload = {
-    timestamp: Date.now(),
-    prices,
-    prevPrices: prevPrices || prices
-  };
-  localStorage.setItem(PRICE_CACHE_KEY, JSON.stringify(payload));
-}
-
-// ═══════════════════════════════════════════════════════════════
-// ВЫЧИСЛИТЬ ВСЕ ЦЕНЫ ИЗ FALLBACK (для первого старта)
-// ═══════════════════════════════════════════════════════════════
-function computeFallbackPrices() {
-  const b = FALLBACK.brent, w = FALLBACK.wti, n = FALLBACK.natgas;
-  const p = {};
-  for (const cfg of PRICE_CONFIG) {
-    if (cfg.source === 'yahoo') {
-      p[cfg.id] = FALLBACK[cfg.id] || 0;
-    } else {
-      p[cfg.id] = cfg.formula(b, w, n);
+  fmtChange(cur, prev) {
+    if (prev == null || isNaN(prev) || prev === 0 || isNaN(cur)) {
+      return { cls: 'up', txt: '▲ 0.00%' };
     }
-  }
-  return p;
-}
+    const pct = ((cur - prev) / prev) * 100;
+    if (Math.abs(pct) < 0.005) return { cls: 'up', txt: '▲ 0.00%' };
+    const up = pct >= 0;
+    return { cls: up ? 'up' : 'dn', txt: `${up ? '▲' : '▼'} ${up ? '+' : ''}${pct.toFixed(2)}%` };
+  },
 
-// ═══════════════════════════════════════════════════════════════
-// FORMATTING HELPERS
-// ═══════════════════════════════════════════════════════════════
-function fmt(val, decimals) {
-  if (val == null || isNaN(val)) return '—';
-  return decimals === 0 ? Math.round(val).toString() : val.toFixed(decimals);
-}
+  fmtDisplay(val, unit, d) {
+    const v = this.fmt(val, d);
+    if (unit === '/bbl') return `$${v} <small style="font-size:11px;color:var(--text3)">/bbl</small>`;
+    if (unit === '/MMBtu') return `$${v} <small style="font-size:11px;color:var(--text3)">/MMBtu</small>`;
+    return `$${v} <small style="font-size:11px;color:var(--text3)">/MT</small>`;
+  },
 
-function fmtChange(cur, prev) {
-  if (prev == null || prev === 0 || isNaN(prev) || isNaN(cur)) return { cls: 'up', txt: '▲ 0.00%' };
-  const pct = ((cur - prev) / prev) * 100;
-  if (Math.abs(pct) < 0.001) return { cls: 'up', txt: '▲ 0.00%' };
-  const cls = pct >= 0 ? 'up' : 'dn';
-  const arrow = pct >= 0 ? '▲' : '▼';
-  const sign = pct >= 0 ? '+' : '';
-  return { cls, txt: `${arrow} ${sign}${pct.toFixed(2)}%` };
-}
+  render(prices, prevPrices, timestamp, isLive) {
+    this.renderTicker(prices, prevPrices);
+    this.renderHero(prices, prevPrices);
+    this.renderStats(prices);
+    this.renderFooter(timestamp, isLive);
+    console.log('[EN590] Rendered. Live=' + isLive, prices);
+  },
 
-function fmtDisplay(val, unit, decimals) {
-  const v = fmt(val, decimals);
-  if (unit === '/bbl') return `$${v} <small style="font-size:11px;color:var(--text3)">/bbl</small>`;
-  if (unit === '/MMBtu') return `$${v} <small style="font-size:11px;color:var(--text3)">/MMBtu</small>`;
-  return `$${v} <small style="font-size:11px;color:var(--text3)">/MT</small>`;
-}
+  renderTicker(prices, prevPrices) {
+    document.querySelectorAll('.ticker-item').forEach(el => {
+      const nameEl = el.querySelector('.name');
+      if (!nameEl) return;
+      const cfg = this.items.find(i => i.name === nameEl.textContent.trim());
+      if (!cfg) return;
+      const val = prices[cfg.id];
+      const prev = prevPrices[cfg.id];
+      const ch = this.fmtChange(val, prev);
+      const display = '$' + this.fmt(val, cfg.decimals) + cfg.unit;
+      const vEl = el.querySelector('.val');
+      const cEl = el.querySelector('.up, .dn');
+      if (vEl) vEl.textContent = display;
+      if (cEl) { cEl.className = ch.cls; cEl.textContent = ch.txt; }
+    });
+  },
 
-// ═══════════════════════════════════════════════════════════════
-// MAIN UPDATE LOGIC
-// ═══════════════════════════════════════════════════════════════
-async function updatePrices(force = false) {
-  const cache = getCache();
-  const now = Date.now();
-
-  // Если кэш свежий (< 6 часов) и не force — рендерим из кэша
-  if (!force && cache && (now - cache.timestamp < UPDATE_INTERVAL_MS)) {
-    renderAll(cache.prices, cache.prevPrices, cache.timestamp, false);
-    return;
-  }
-
-  // Fetch Yahoo данные
-  const yahoo = {};
-  let liveCount = 0;
-  for (const [key, sym] of Object.entries(YAHOO_SYMBOLS)) {
-    const price = await fetchYahooPrice(sym);
-    if (price != null) liveCount++;
-    yahoo[key] = price;
-  }
-
-  const brent = yahoo.brent || FALLBACK.brent;
-  const wti   = yahoo.wti   || FALLBACK.wti;
-  const natgas= yahoo.natgas|| FALLBACK.natgas;
-
-  const prices = {};
-  for (const cfg of PRICE_CONFIG) {
-    if (cfg.source === 'yahoo') {
-      prices[cfg.id] = yahoo[cfg.id] || FALLBACK[cfg.id] || 0;
-    } else {
-      prices[cfg.id] = cfg.formula(brent, wti, natgas);
-    }
-  }
-
-  // Предыдущие цены: из кэша или вычисленные из fallback (чтобы при первом запуске были %)
-  const prev = cache ? cache.prices : computeFallbackPrices();
-  setCache(prices, prev);
-  renderAll(prices, prev, now, liveCount > 0);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// RENDER ALL UI
-// ═══════════════════════════════════════════════════════════════
-function renderAll(prices, prevPrices, timestamp, isLive) {
-  renderTicker(prices, prevPrices);
-  renderHeroCard(prices, prevPrices);
-  renderStatCards(prices);
-  renderFooterTime(timestamp, isLive);
-}
-
-function renderTicker(prices, prevPrices) {
-  const items = document.querySelectorAll('.ticker-item');
-  if (!items.length) return;
-
-  PRICE_CONFIG.forEach((cfg, i) => {
-    const val = prices[cfg.id];
-    const prev = prevPrices[cfg.id];
-    const ch = fmtChange(val, prev);
-    const display = '$' + fmt(val, cfg.decimals) + cfg.unit;
-
-    [i, i + 10].forEach(idx => {
-      const el = items[idx];
-      if (!el) return;
-      const valEl = el.querySelector('.val');
-      const chEl = el.querySelector('.up, .dn');
-      if (valEl) valEl.textContent = display;
-      if (chEl) {
-        chEl.className = ch.cls;
-        chEl.textContent = ch.txt;
+  renderHero(prices, prevPrices) {
+    document.querySelectorAll('.hero-card .price-row[data-price-id]').forEach(row => {
+      const id = row.getAttribute('data-price-id');
+      const cfg = this.items.find(i => i.id === id);
+      if (!cfg) return;
+      const val = prices[id];
+      const prev = prevPrices[id];
+      const ch = this.fmtChange(val, prev);
+      const vEl = row.querySelector('.price-val');
+      const cEl = row.querySelector('.price-change');
+      if (vEl) vEl.innerHTML = this.fmtDisplay(val, cfg.unit, cfg.decimals);
+      if (cEl) {
+        cEl.className = 'price-change ' + (ch.cls === 'dn' ? 'down' : 'up');
+        cEl.textContent = ch.txt;
       }
     });
-  });
-}
+  },
 
-function renderHeroCard(prices, prevPrices) {
-  const rows = document.querySelectorAll('.hero-card .price-row');
-  const map = [
-    { id: 'en590',   label: 'EN590 Diesel',       sub: '10 PPM · Standard' },
-    { id: 'brent',   label: 'Brent Crude',        sub: 'ICE · Spot' },
-    { id: 'sulphur', label: 'Sulphur Granulated', sub: 'Purity 99.5%' },
-    { id: 'urea',    label: 'Urea 46%',           sub: 'Granulated · Prilled' },
-    { id: 'npk',     label: 'NPK Fertilizer',     sub: '16-16-16' },
-  ];
+  renderStats(prices) {
+    document.querySelectorAll('.stats-cards .stat-card[data-stat-id]').forEach(card => {
+      const id = card.getAttribute('data-stat-id');
+      const cfg = this.items.find(i => i.id === id);
+      if (!cfg) return;
+      const val = prices[id];
+      if (val == null || isNaN(val)) return;
+      const el = card.querySelector('.s-val');
+      if (el) el.textContent = '$' + this.fmt(val, cfg.decimals);
+    });
+  },
 
-  rows.forEach((row, idx) => {
-    const m = map[idx];
-    if (!m) return;
-    const cfg = PRICE_CONFIG.find(c => c.id === m.id);
-    if (!cfg) return;
+  renderFooter(ts, isLive) {
+    const el = document.getElementById('priceFooter');
+    if (!el || !ts) return;
+    const d = new Date(ts);
+    const t = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+    const date = d.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
+    const status = isLive ? '● LIVE' : '○ CACHED';
+    el.innerHTML = `⚡ ${status} · Updated <strong>${date} ${t}</strong> · Click to refresh · Contact for firm offers`;
+    el.style.cursor = 'pointer';
+    el.onclick = () => this.update(true);
+  },
 
-    const val = prices[m.id];
-    const prev = prevPrices[m.id];
-    const ch = fmtChange(val, prev);
+  async update(force = false) {
+    const cache = this.getCache();
+    const now = Date.now();
 
-    const nameEl = row.querySelector('.price-name');
-    const valEl = row.querySelector('.price-val');
-    const chEl = row.querySelector('.price-change');
-
-    if (nameEl) nameEl.innerHTML = `${m.label} <span class="grade">${m.sub}</span>`;
-    if (valEl) valEl.innerHTML = fmtDisplay(val, cfg.unit, cfg.decimals);
-    if (chEl) {
-      chEl.className = 'price-change ' + (ch.cls === 'dn' ? 'down' : 'up');
-      chEl.textContent = ch.txt;
+    if (!force && cache && (now - cache.timestamp < this.interval)) {
+      this.render(cache.prices, cache.prevPrices, cache.timestamp, false);
+      return;
     }
-  });
-}
 
-function renderStatCards(prices) {
-  const cards = document.querySelectorAll('.stats-cards .stat-card[data-stat-id]');
-  cards.forEach(card => {
-    const id = card.getAttribute('data-stat-id');
-    const cfg = PRICE_CONFIG.find(c => c.id === id);
-    if (!cfg) return;
-    const val = prices[id];
-    if (val == null || isNaN(val)) return;
-    const sVal = card.querySelector('.s-val');
-    if (sVal) sVal.textContent = '$' + fmt(val, cfg.decimals);
-  });
-}
+    const yahoo = {};
+    let live = false;
+    for (const it of this.items) {
+      if (it.yahoo) {
+        const p = await this.fetchYahoo(it.yahoo);
+        if (p != null) { yahoo[it.id] = p; live = true; }
+      }
+    }
 
-function renderFooterTime(timestamp, isLive) {
-  const el = document.getElementById('priceFooter');
-  if (!el || !timestamp) return;
-  const d = new Date(timestamp);
-  const timeStr = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-  const dateStr = d.toLocaleDateString('en-US', { day: '2-digit', month: 'short' });
-  const status = isLive ? 'Live' : 'Cached';
-  el.innerHTML = `⚡ ${status} · Updated <strong>${dateStr} ${timeStr}</strong> · Click to refresh · Contact for firm offers`;
-  el.style.cursor = 'pointer';
-  el.title = 'Click to force refresh prices now';
-  el.onclick = () => updatePrices(true);
-}
+    const prices = this.computePrices(yahoo);
+    const prev = cache ? cache.prices : this.computePrices({});
+    this.setCache(prices, prev);
+    this.render(prices, prev, now, live);
+  }
+};
 
 // ═══════════════════════════════════════════════════════════════
-// GALLERY ENGINE (images from web via loremflickr)
+// GALLERY (AI images via Pollinations)
 // ═══════════════════════════════════════════════════════════════
-const GALLERY_KEYWORDS = [
-  'oil,terminal,port',
-  'oil,refinery,industrial',
-  'cargo,ship,port',
-  'fertilizer,factory,industrial',
-  'sulfur,mining,industrial'
+const GALLERY_PROMPTS = [
+  'oil storage terminal tanks industrial night cinematic photography',
+  'oil refinery petrochemical plant industrial complex sunset smoke',
+  'cargo ship port container vessel loading dock aerial view',
+  'fertilizer plant industrial factory agriculture production facility',
+  'sulfur mining yellow industrial extraction open pit mine'
 ];
 
 function initGallery() {
-  const items = document.querySelectorAll('.gallery-item');
-  items.forEach((item, i) => {
+  document.querySelectorAll('.gallery-item').forEach((item, i) => {
     const ph = item.querySelector('.gallery-placeholder');
     if (!ph) return;
-
-    const kw = GALLERY_KEYWORDS[i] || 'industrial';
-    const lock = i + 1;
-    const imgUrl = `https://loremflickr.com/800/600/${encodeURIComponent(kw)}?lock=${lock}`;
-
+    const prompt = GALLERY_PROMPTS[i] || 'industrial';
+    const seed = 100 + i;
+    const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true&seed=${seed}`;
     const img = document.createElement('img');
-    img.alt = kw.replace(/,/g, ' ');
+    img.alt = prompt;
     img.loading = 'lazy';
     img.src = imgUrl;
-
-    img.onerror = () => {
-      img.remove();
-      ph.style.display = 'flex';
-    };
-
-    img.onload = () => {
-      ph.style.display = 'none';
-    };
-
+    img.onerror = () => { img.remove(); ph.style.display = 'flex'; };
+    img.onload = () => { ph.style.display = 'none'; };
     item.insertBefore(img, ph);
   });
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TABS (original)
+// TABS
 // ═══════════════════════════════════════════════════════════════
 function showTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -2386,12 +2307,11 @@ function showTab(name) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// CHART (original static)
+// CHART
 // ═══════════════════════════════════════════════════════════════
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const prices = [74, 79, 83, 80, 85, 88, 82, 86, 89, 84, 87, 82];
 const maxP = Math.max(...prices);
-
 const barsEl = document.getElementById('chartBars');
 if (barsEl) {
   months.forEach((m, i) => {
@@ -2409,27 +2329,20 @@ if (barsEl) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// SCROLL FADE-IN (original)
+// SCROLL ANIMATION
 // ═══════════════════════════════════════════════════════════════
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // ═══════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  updatePrices();
+  PRICE_ENGINE.update();
   initGallery();
-
-  // Периодическая проверка каждые 10 минут
-  setInterval(() => updatePrices(), 10 * 60 * 1000);
+  setInterval(() => PRICE_ENGINE.update(), 10 * 60 * 1000);
 });
 </script>
 
