@@ -2345,6 +2345,59 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(() => PRICE_ENGINE.update(), 10 * 60 * 1000);
 });
 </script>
+<script>
+fetch('prices.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    const p = data.prices;
+    const ts = data.timestamp;
 
+    // Update ticker
+    document.querySelectorAll('.ticker-item').forEach(el => {
+      const name = el.querySelector('.name')?.textContent?.trim();
+      const map = {
+        'BRENT CRUDE': 'brent', 'WTI CRUDE': 'wti', 'EN590 10PPM': 'en590',
+        'SULPHUR GRAN': 'sulphur', 'UREA 46% GRAN': 'urea', 'NPK 16-16-16': 'npk',
+        'JET FUEL A1': 'jet', 'MAZUT M100': 'mazut', 'NAT GAS TTF': 'natgas',
+        'BITUMEN 60/70': 'bitumen'
+      };
+      const id = map[name];
+      if (!id || !p[id]?.price) return;
+      const val = p[id].price;
+      const chg = p[id].change || '0.00%';
+      const up = chg.startsWith('+') || (!chg.startsWith('-') && !chg.startsWith('−'));
+      const vEl = el.querySelector('.val');
+      const cEl = el.querySelector('.up, .dn');
+      if (vEl) vEl.textContent = '$' + Number(val).toLocaleString('en-US', {maximumFractionDigits: 2}) + p[id].unit;
+      if (cEl) { cEl.className = up ? 'up' : 'dn'; cEl.textContent = (up ? '▲ +' : '▼ ') + chg; }
+    });
+
+    // Update hero card
+    document.querySelectorAll('.price-row[data-price-id]').forEach(row => {
+      const id = row.getAttribute('data-price-id');
+      if (!p[id]?.price) return;
+      const val = p[id].price;
+      const chg = p[id].change || '0.00%';
+      const up = chg.startsWith('+') || (!chg.startsWith('-') && !chg.startsWith('−'));
+      const vEl = row.querySelector('.price-val');
+      const cEl = row.querySelector('.price-change');
+      if (vEl) vEl.innerHTML = '$' + Number(val).toLocaleString('en-US', {maximumFractionDigits: 2}) + ' <small style="font-size:11px;color:var(--text3)">' + p[id].unit + '</small>';
+      if (cEl) { cEl.className = 'price-change ' + (up ? 'up' : 'down'); cEl.textContent = (up ? '▲ +' : '▼ ') + chg; }
+    });
+
+    // Update stats cards
+    document.querySelectorAll('.stat-card[data-stat-id]').forEach(card => {
+      const id = card.getAttribute('data-stat-id');
+      if (!p[id]?.price) return;
+      const el = card.querySelector('.s-val');
+      if (el) el.textContent = '$' + Number(p[id].price).toLocaleString('en-US', {maximumFractionDigits: 2});
+    });
+
+    // Update footer timestamp
+    const footer = document.getElementById('priceFooter');
+    if (footer && ts) footer.innerHTML = '⚡ AUTO-UPDATED · ' + ts + ' · Contact for firm offers';
+
+  }).catch(e => console.log('prices.json not loaded yet:', e));
+</script>
 </body>
 </html>
