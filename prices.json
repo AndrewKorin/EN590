@@ -1,6 +1,6 @@
 {
-  "timestamp": "May 23, 2026 — 02:15 AM NY Time",
-  "timestamp_iso": "2026-05-23T02:15:10.456972-04:00",
+  "timestamp": "May 23, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-05-23T05:32:10.977748-04:00",
   "rates": {
     "USDCNY": 6.798,
     "EURCNY": 7.8893,
@@ -29,7 +29,7 @@
     },
     "urea": {
       "price": 502.5,
-      "change": "-7.37%",
+      "change": "-1.95%",
       "unit": "/MT"
     },
     "npk": {
@@ -64,7 +64,7 @@
     },
     "nickel": {
       "price": 18880.0,
-      "change": "0.00%",
+      "change": "+0.67%",
       "unit": "/T"
     },
     "gold": {
