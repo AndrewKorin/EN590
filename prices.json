@@ -1,6 +1,6 @@
 {
-  "timestamp": "June 06, 2026 — 11:32 AM NY Time",
-  "timestamp_iso": "2026-06-06T11:32:30.699582-04:00",
+  "timestamp": "June 06, 2026 — 05:32 PM NY Time",
+  "timestamp_iso": "2026-06-06T17:32:36.264872-04:00",
   "rates": {
     "USDCNY": 6.7897,
     "EURCNY": 7.8225,
@@ -89,7 +89,7 @@
     },
     "polypropylene": {
       "price": 1280.7635,
-      "change": "-0.54%",
+      "change": "-0.24%",
       "unit": "/T"
     },
     "urals": {
