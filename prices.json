@@ -1,24 +1,24 @@
 {
-  "timestamp": "June 12, 2026 — 05:32 PM NY Time",
-  "timestamp_iso": "2026-06-12T17:32:33.688105-04:00",
+  "timestamp": "June 13, 2026 — 02:39 AM NY Time",
+  "timestamp_iso": "2026-06-13T02:39:36.544852-04:00",
   "rates": {
     "USDCNY": 6.7634,
-    "EURCNY": 7.8183,
-    "GBPCNY": 9.057
+    "EURCNY": 7.8247,
+    "GBPCNY": 9.064
   },
   "prices": {
     "brent": {
-      "price": 86.744,
-      "change": "-4.02%",
+      "price": 87.33,
+      "change": "-3.37%",
       "unit": "/bbl"
     },
     "wti": {
-      "price": 84.321,
-      "change": "-3.86%",
+      "price": 84.88,
+      "change": "-3.23%",
       "unit": "/bbl"
     },
     "en590": {
-      "price": 788.0,
+      "price": 793.0,
       "change": "0.00%",
       "unit": "/MT"
     },
@@ -29,27 +29,27 @@
     },
     "urea": {
       "price": 400.0,
-      "change": "-0.37%",
+      "change": "-0.62%",
       "unit": "/MT"
     },
     "npk": {
-      "price": 359.0,
+      "price": 362.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "jet": {
-      "price": 866.0,
+      "price": 872.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "mazut": {
-      "price": 327.0,
+      "price": 329.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "natgas": {
-      "price": 3.139,
-      "change": "+1.68%",
+      "price": 3.12,
+      "change": "+1.07%",
       "unit": "/MMBtu"
     },
     "bitumen": {
@@ -73,13 +73,13 @@
       "unit": "/t.oz"
     },
     "silver": {
-      "price": 68.013,
-      "change": "+1.00%",
+      "price": 67.761,
+      "change": "+0.63%",
       "unit": "/t.oz"
     },
     "copper": {
-      "price": 6.4548,
-      "change": "+3.13%",
+      "price": 6.4305,
+      "change": "+2.74%",
       "unit": "/Lbs"
     },
     "molybdenum": {
