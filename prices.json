@@ -1,6 +1,6 @@
 {
-  "timestamp": "June 27, 2026 — 05:32 PM NY Time",
-  "timestamp_iso": "2026-06-27T17:32:33.403558-04:00",
+  "timestamp": "June 28, 2026 — 01:44 AM NY Time",
+  "timestamp_iso": "2026-06-28T01:44:06.871653-04:00",
   "rates": {
     "USDCNY": 6.8045,
     "EURCNY": 7.7462,
@@ -73,8 +73,8 @@
       "unit": "/t.oz"
     },
     "silver": {
-      "price": 58.78,
-      "change": "+1.61%",
+      "price": 58.75,
+      "change": "+1.57%",
       "unit": "/t.oz"
     },
     "copper": {
