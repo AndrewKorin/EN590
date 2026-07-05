@@ -1,6 +1,6 @@
 {
-  "timestamp": "July 05, 2026 — 02:17 AM NY Time",
-  "timestamp_iso": "2026-07-05T02:17:51.268705-04:00",
+  "timestamp": "July 05, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-07-05T05:32:35.008484-04:00",
   "rates": {
     "USDCNY": 6.7849,
     "EURCNY": 7.7597,
@@ -28,8 +28,8 @@
       "unit": "/MT"
     },
     "urea": {
-      "price": 362.0,
-      "change": "-0.14%",
+      "price": 368.5,
+      "change": "+1.66%",
       "unit": "/MT"
     },
     "npk": {
