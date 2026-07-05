@@ -1,8 +1,8 @@
 {
-  "timestamp": "July 05, 2026 — 11:32 AM NY Time",
-  "timestamp_iso": "2026-07-05T11:32:31.287283-04:00",
+  "timestamp": "July 05, 2026 — 05:32 PM NY Time",
+  "timestamp_iso": "2026-07-05T17:32:33.957612-04:00",
   "rates": {
-    "USDCNY": 6.7849,
+    "USDCNY": 6.7829,
     "EURCNY": 7.7597,
     "GBPCNY": 9.0583
   },
@@ -23,7 +23,7 @@
       "unit": "/MT"
     },
     "sulphur": {
-      "price": 1346.4708,
+      "price": 1346.8679,
       "change": "+0.74%",
       "unit": "/MT"
     },
@@ -53,7 +53,7 @@
       "unit": "/MMBtu"
     },
     "bitumen": {
-      "price": 581.1434,
+      "price": 581.3148,
       "change": "+3.14%",
       "unit": "/MT"
     },
@@ -83,13 +83,13 @@
       "unit": "/Lbs"
     },
     "molybdenum": {
-      "price": 89.5371,
+      "price": 89.5635,
       "change": "+0.83%",
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1066.4859,
-      "change": "+1.40%",
+      "price": 1066.9478,
+      "change": "+0.91%",
       "unit": "/T"
     },
     "urals": {
