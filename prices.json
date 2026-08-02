@@ -1,6 +1,6 @@
 {
-  "timestamp": "August 02, 2026 — 12:35 AM NY Time",
-  "timestamp_iso": "2026-08-02T00:35:06.468731-04:00",
+  "timestamp": "August 02, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-08-02T05:32:32.016170-04:00",
   "rates": {
     "USDCNY": 6.7525,
     "EURCNY": 7.7814,
@@ -29,7 +29,7 @@
     },
     "urea": {
       "price": 420.0,
-      "change": "-2.33%",
+      "change": "-0.59%",
       "unit": "/MT"
     },
     "npk": {
@@ -88,8 +88,8 @@
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1223.843,
-      "change": "-0.43%",
+      "price": 1226.953,
+      "change": "-0.07%",
       "unit": "/T"
     },
     "urals": {
