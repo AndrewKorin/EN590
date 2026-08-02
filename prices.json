@@ -1,6 +1,6 @@
 {
-  "timestamp": "August 02, 2026 — 11:39 AM NY Time",
-  "timestamp_iso": "2026-08-02T11:39:50.341912-04:00",
+  "timestamp": "August 02, 2026 — 05:32 PM NY Time",
+  "timestamp_iso": "2026-08-02T17:32:29.632174-04:00",
   "rates": {
     "USDCNY": 6.7525,
     "EURCNY": 7.7814,
@@ -13,8 +13,8 @@
       "unit": "/bbl"
     },
     "wti": {
-      "price": 84.67,
-      "change": "+1.29%",
+      "price": 83.001,
+      "change": "-1.97%",
       "unit": "/bbl"
     },
     "en590": {
@@ -29,7 +29,7 @@
     },
     "urea": {
       "price": 420.0,
-      "change": "-2.33%",
+      "change": "-0.59%",
       "unit": "/MT"
     },
     "npk": {
@@ -89,7 +89,7 @@
     },
     "polypropylene": {
       "price": 1226.953,
-      "change": "-0.18%",
+      "change": "-0.07%",
       "unit": "/T"
     },
     "urals": {
