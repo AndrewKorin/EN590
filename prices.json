@@ -1,6 +1,6 @@
 {
-  "timestamp": "August 15, 2026 — 01:19 AM NY Time",
-  "timestamp_iso": "2026-08-15T01:19:01.984681-04:00",
+  "timestamp": "August 15, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-08-15T05:32:43.444545-04:00",
   "rates": {
     "USDCNY": 6.7434,
     "EURCNY": 7.8017,
@@ -28,8 +28,8 @@
       "unit": "/MT"
     },
     "urea": {
-      "price": 386.0,
-      "change": "-1.66%",
+      "price": 390.0,
+      "change": "-0.64%",
       "unit": "/MT"
     },
     "npk": {
@@ -59,12 +59,12 @@
     },
     "aluminum": {
       "price": 3247.7,
-      "change": "0.00%",
+      "change": "+0.19%",
       "unit": "/T"
     },
     "nickel": {
-      "price": 16759.0,
-      "change": "-0.30%",
+      "price": 16810.0,
+      "change": "+0.30%",
       "unit": "/T"
     },
     "gold": {
@@ -88,8 +88,8 @@
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1246.2556,
-      "change": "+0.43%",
+      "price": 1244.4761,
+      "change": "+0.16%",
       "unit": "/T"
     },
     "urals": {
