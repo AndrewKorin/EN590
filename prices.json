@@ -1,6 +1,6 @@
 {
-  "timestamp": "August 28, 2026 — 05:32 PM NY Time",
-  "timestamp_iso": "2026-08-28T17:32:34.640110-04:00",
+  "timestamp": "August 29, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-08-29T05:32:31.450702-04:00",
   "rates": {
     "USDCNY": 6.7298,
     "EURCNY": 7.7948,
@@ -8,13 +8,13 @@
   },
   "prices": {
     "brent": {
-      "price": 88.31,
-      "change": "-0.24%",
+      "price": 88.29,
+      "change": "-0.26%",
       "unit": "/bbl"
     },
     "wti": {
-      "price": 83.39,
-      "change": "-0.17%",
+      "price": 83.44,
+      "change": "-0.11%",
       "unit": "/bbl"
     },
     "en590": {
@@ -48,7 +48,7 @@
       "unit": "/MT"
     },
     "natgas": {
-      "price": 2.8804,
+      "price": 2.8805,
       "change": "-1.15%",
       "unit": "/MMBtu"
     },
@@ -59,12 +59,12 @@
     },
     "aluminum": {
       "price": 3245.45,
-      "change": "+0.28%",
+      "change": "0.00%",
       "unit": "/T"
     },
     "nickel": {
-      "price": 16770.0,
-      "change": "-0.62%",
+      "price": 16673.0,
+      "change": "-0.58%",
       "unit": "/T"
     },
     "gold": {
@@ -73,12 +73,12 @@
       "unit": "/t.oz"
     },
     "silver": {
-      "price": 66.339,
-      "change": "-4.21%",
+      "price": 66.152,
+      "change": "-4.48%",
       "unit": "/t.oz"
     },
     "copper": {
-      "price": 6.5435,
+      "price": 6.5433,
       "change": "-0.70%",
       "unit": "/Lbs"
     },
