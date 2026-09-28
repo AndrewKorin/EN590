@@ -1,29 +1,29 @@
 {
-  "timestamp": "September 27, 2026 — 05:32 PM NY Time",
-  "timestamp_iso": "2026-09-27T17:32:16.421961-04:00",
+  "timestamp": "September 28, 2026 — 02:45 AM NY Time",
+  "timestamp_iso": "2026-09-28T02:45:03.854178-04:00",
   "rates": {
-    "USDCNY": 6.722,
-    "EURCNY": 7.6569,
-    "GBPCNY": 8.904
+    "USDCNY": 6.7158,
+    "EURCNY": 7.6434,
+    "GBPCNY": 8.8918
   },
   "prices": {
     "brent": {
-      "price": 104.32,
-      "change": "-2.14%",
+      "price": 106.966,
+      "change": "+2.54%",
       "unit": "/bbl"
     },
     "wti": {
-      "price": 92.41,
-      "change": "-2.33%",
+      "price": 93.882,
+      "change": "+1.59%",
       "unit": "/bbl"
     },
     "en590": {
-      "price": 947.0,
+      "price": 971.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "sulphur": {
-      "price": 1148.319,
+      "price": 1149.3791,
       "change": "0.00%",
       "unit": "/MT"
     },
@@ -33,68 +33,68 @@
       "unit": "/MT"
     },
     "npk": {
-      "price": 432.0,
+      "price": 443.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "jet": {
-      "price": 1041.0,
+      "price": 1068.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "mazut": {
-      "price": 393.0,
+      "price": 403.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "natgas": {
-      "price": 3.196,
-      "change": "-3.06%",
+      "price": 3.1179,
+      "change": "-3.32%",
       "unit": "/MMBtu"
     },
     "bitumen": {
-      "price": 781.9101,
-      "change": "+5.18%",
+      "price": 761.3389,
+      "change": "-2.72%",
       "unit": "/MT"
     },
     "aluminum": {
-      "price": 3281.5,
-      "change": "+0.78%",
+      "price": 3236.53,
+      "change": "-1.37%",
       "unit": "/T"
     },
     "nickel": {
-      "price": 16385.0,
-      "change": "-0.88%",
+      "price": 16263.0,
+      "change": "-0.74%",
       "unit": "/T"
     },
     "gold": {
-      "price": 4285.0,
-      "change": "+0.24%",
+      "price": 4174.99,
+      "change": "-2.57%",
       "unit": "/t.oz"
     },
     "silver": {
-      "price": 64.259,
-      "change": "+0.68%",
+      "price": 61.593,
+      "change": "-4.15%",
       "unit": "/t.oz"
     },
     "copper": {
-      "price": 6.6955,
-      "change": "-0.34%",
+      "price": 6.5974,
+      "change": "-1.52%",
       "unit": "/Lbs"
     },
     "molybdenum": {
-      "price": 92.3088,
+      "price": 92.3941,
       "change": "0.00%",
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1263.4633,
-      "change": "0.00%",
+      "price": 1265.8209,
+      "change": "+0.09%",
       "unit": "/T"
     },
     "urals": {
-      "price": 113.61,
-      "change": "+3.57%",
+      "price": 110.54,
+      "change": "-2.70%",
       "unit": "/bbl"
     }
   }
