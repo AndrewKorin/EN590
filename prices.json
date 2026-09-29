@@ -1,6 +1,6 @@
 {
-  "timestamp": "September 29, 2026 — 04:50 AM NY Time",
-  "timestamp_iso": "2026-09-29T04:50:14.487939-04:00",
+  "timestamp": "September 29, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-09-29T05:32:34.681342-04:00",
   "rates": {
     "USDCNY": 6.7055,
     "EURCNY": 7.6088,
@@ -8,17 +8,17 @@
   },
   "prices": {
     "brent": {
-      "price": 105.381,
-      "change": "+0.10%",
+      "price": 105.313,
+      "change": "+0.03%",
       "unit": "/bbl"
     },
     "wti": {
-      "price": 92.704,
-      "change": "+0.11%",
+      "price": 92.63,
+      "change": "+0.03%",
       "unit": "/bbl"
     },
     "en590": {
-      "price": 957.0,
+      "price": 956.0,
       "change": "0.00%",
       "unit": "/MT"
     },
@@ -38,7 +38,7 @@
       "unit": "/MT"
     },
     "jet": {
-      "price": 1052.0,
+      "price": 1051.0,
       "change": "0.00%",
       "unit": "/MT"
     },
@@ -48,8 +48,8 @@
       "unit": "/MT"
     },
     "natgas": {
-      "price": 3.1085,
-      "change": "+0.08%",
+      "price": 3.0865,
+      "change": "-0.63%",
       "unit": "/MMBtu"
     },
     "bitumen": {
@@ -58,28 +58,28 @@
       "unit": "/MT"
     },
     "aluminum": {
-      "price": 3239.45,
-      "change": "-0.37%",
+      "price": 3236.5,
+      "change": "-0.46%",
       "unit": "/T"
     },
     "nickel": {
-      "price": 16015.0,
-      "change": "-0.93%",
+      "price": 16021.0,
+      "change": "-0.89%",
       "unit": "/T"
     },
     "gold": {
-      "price": 4140.32,
+      "price": 4140.35,
       "change": "+0.62%",
       "unit": "/t.oz"
     },
     "silver": {
-      "price": 60.675,
-      "change": "+0.08%",
+      "price": 60.594,
+      "change": "-0.05%",
       "unit": "/t.oz"
     },
     "copper": {
-      "price": 6.5286,
-      "change": "-0.62%",
+      "price": 6.5259,
+      "change": "-0.66%",
       "unit": "/Lbs"
     },
     "molybdenum": {
@@ -89,7 +89,7 @@
     },
     "polypropylene": {
       "price": 1282.0819,
-      "change": "0.00%",
+      "change": "+1.13%",
       "unit": "/T"
     },
     "urals": {
