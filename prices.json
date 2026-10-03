@@ -1,6 +1,6 @@
 {
-  "timestamp": "October 03, 2026 — 11:32 AM NY Time",
-  "timestamp_iso": "2026-10-03T11:32:21.778924-04:00",
+  "timestamp": "October 03, 2026 — 05:32 PM NY Time",
+  "timestamp_iso": "2026-10-03T17:32:15.778446-04:00",
   "rates": {
     "USDCNY": 6.7063,
     "EURCNY": 7.548,
@@ -63,8 +63,8 @@
       "unit": "/T"
     },
     "nickel": {
-      "price": 15519.0,
-      "change": "-0.07%",
+      "price": 15530.0,
+      "change": "-0.51%",
       "unit": "/T"
     },
     "gold": {
