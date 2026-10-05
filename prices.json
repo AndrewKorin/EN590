@@ -1,29 +1,29 @@
 {
-  "timestamp": "October 05, 2026 — 05:32 AM NY Time",
-  "timestamp_iso": "2026-10-05T05:32:13.785046-04:00",
+  "timestamp": "October 05, 2026 — 11:32 AM NY Time",
+  "timestamp_iso": "2026-10-05T11:32:16.197028-04:00",
   "rates": {
-    "USDCNY": 6.7075,
-    "EURCNY": 7.5256,
-    "GBPCNY": 8.8775
+    "USDCNY": 6.7049,
+    "EURCNY": 7.5186,
+    "GBPCNY": 8.8659
   },
   "prices": {
     "brent": {
-      "price": 101.939,
-      "change": "-0.30%",
+      "price": 101.924,
+      "change": "-0.32%",
       "unit": "/bbl"
     },
     "wti": {
-      "price": 90.315,
-      "change": "-0.87%",
+      "price": 90.508,
+      "change": "-0.66%",
       "unit": "/bbl"
     },
     "en590": {
-      "price": 926.0,
+      "price": 925.0,
       "change": "0.00%",
       "unit": "/MT"
     },
     "sulphur": {
-      "price": 1148.3161,
+      "price": 1148.7614,
       "change": "0.00%",
       "unit": "/MT"
     },
@@ -48,47 +48,47 @@
       "unit": "/MT"
     },
     "natgas": {
-      "price": 3.0275,
-      "change": "-0.25%",
+      "price": 3.0605,
+      "change": "+0.84%",
       "unit": "/MMBtu"
     },
     "bitumen": {
-      "price": 681.0287,
+      "price": 681.2928,
       "change": "-11.16%",
       "unit": "/MT"
     },
     "aluminum": {
-      "price": 3120.25,
-      "change": "+0.73%",
+      "price": 3131.0,
+      "change": "+1.08%",
       "unit": "/T"
     },
     "nickel": {
-      "price": 15700.0,
-      "change": "+1.09%",
+      "price": 15688.0,
+      "change": "+1.02%",
       "unit": "/T"
     },
     "gold": {
-      "price": 4165.37,
-      "change": "+0.61%",
+      "price": 4137.49,
+      "change": "-0.07%",
       "unit": "/t.oz"
     },
     "silver": {
-      "price": 61.691,
-      "change": "+2.20%",
+      "price": 61.185,
+      "change": "+1.36%",
       "unit": "/t.oz"
     },
     "copper": {
-      "price": 6.5485,
-      "change": "+0.87%",
+      "price": 6.5903,
+      "change": "+1.51%",
       "unit": "/Lbs"
     },
     "molybdenum": {
-      "price": 92.5084,
+      "price": 92.5443,
       "change": "0.00%",
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1280.8051,
+      "price": 1281.3017,
       "change": "0.00%",
       "unit": "/T"
     },
