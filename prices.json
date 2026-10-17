@@ -1,6 +1,6 @@
 {
-  "timestamp": "October 17, 2026 — 11:32 AM NY Time",
-  "timestamp_iso": "2026-10-17T11:32:21.193280-04:00",
+  "timestamp": "October 17, 2026 — 05:32 PM NY Time",
+  "timestamp_iso": "2026-10-17T17:32:16.600039-04:00",
   "rates": {
     "USDCNY": 6.6863,
     "EURCNY": 7.5144,
@@ -63,8 +63,8 @@
       "unit": "/T"
     },
     "nickel": {
-      "price": 15326.0,
-      "change": "+0.50%",
+      "price": 15370.0,
+      "change": "+0.79%",
       "unit": "/T"
     },
     "gold": {
@@ -88,8 +88,8 @@
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1405.4111,
-      "change": "-0.77%",
+      "price": 1403.1677,
+      "change": "-1.50%",
       "unit": "/T"
     },
     "urals": {
