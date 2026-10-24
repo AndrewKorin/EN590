@@ -1,6 +1,6 @@
 {
-  "timestamp": "October 24, 2026 — 02:17 AM NY Time",
-  "timestamp_iso": "2026-10-24T02:17:35.849369-04:00",
+  "timestamp": "October 24, 2026 — 05:32 AM NY Time",
+  "timestamp_iso": "2026-10-24T05:32:48.408915-04:00",
   "rates": {
     "USDCNY": 6.6695,
     "EURCNY": 7.4714,
@@ -59,12 +59,12 @@
     },
     "aluminum": {
       "price": 3047.3,
-      "change": "0.00%",
+      "change": "+1.26%",
       "unit": "/T"
     },
     "nickel": {
       "price": 15846.0,
-      "change": "-0.12%",
+      "change": "-0.93%",
       "unit": "/T"
     },
     "gold": {
