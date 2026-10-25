@@ -1,8 +1,8 @@
 {
-  "timestamp": "October 25, 2026 — 11:32 AM NY Time",
-  "timestamp_iso": "2026-10-25T11:32:20.058469-04:00",
+  "timestamp": "October 25, 2026 — 05:32 PM NY Time",
+  "timestamp_iso": "2026-10-25T17:32:18.511777-04:00",
   "rates": {
-    "USDCNY": 6.6695,
+    "USDCNY": 6.6684,
     "EURCNY": 7.4714,
     "GBPCNY": 8.9201
   },
@@ -13,8 +13,8 @@
       "unit": "/bbl"
     },
     "wti": {
-      "price": 103.27,
-      "change": "+3.82%",
+      "price": 103.002,
+      "change": "-0.26%",
       "unit": "/bbl"
     },
     "en590": {
@@ -23,7 +23,7 @@
       "unit": "/MT"
     },
     "sulphur": {
-      "price": 856.7734,
+      "price": 856.9147,
       "change": "0.00%",
       "unit": "/MT"
     },
@@ -53,13 +53,13 @@
       "unit": "/MMBtu"
     },
     "bitumen": {
-      "price": 729.8898,
+      "price": 730.0102,
       "change": "+4.73%",
       "unit": "/MT"
     },
     "aluminum": {
       "price": 3047.3,
-      "change": "+1.26%",
+      "change": "0.00%",
       "unit": "/T"
     },
     "nickel": {
@@ -83,12 +83,12 @@
       "unit": "/Lbs"
     },
     "molybdenum": {
-      "price": 90.4865,
+      "price": 90.5015,
       "change": "-0.33%",
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1427.3934,
+      "price": 1427.6288,
       "change": "+2.72%",
       "unit": "/T"
     },
