@@ -1,6 +1,6 @@
 {
-  "timestamp": "November 01, 2026 — 10:32 AM NY Time",
-  "timestamp_iso": "2026-11-01T10:32:18.454845-05:00",
+  "timestamp": "November 01, 2026 — 04:32 PM NY Time",
+  "timestamp_iso": "2026-11-01T16:32:12.902399-05:00",
   "rates": {
     "USDCNY": 6.6523,
     "EURCNY": 7.4241,
@@ -59,7 +59,7 @@
     },
     "aluminum": {
       "price": 3059.7,
-      "change": "-0.38%",
+      "change": "0.00%",
       "unit": "/T"
     },
     "nickel": {
@@ -88,8 +88,8 @@
       "unit": "/Kg"
     },
     "polypropylene": {
-      "price": 1548.1863,
-      "change": "-0.86%",
+      "price": 1568.3298,
+      "change": "+1.30%",
       "unit": "/T"
     },
     "urals": {
